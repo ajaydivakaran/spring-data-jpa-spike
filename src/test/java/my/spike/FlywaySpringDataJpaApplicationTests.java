@@ -37,8 +37,8 @@ public class FlywaySpringDataJpaApplicationTests {
     @Sql(scripts = {"/clear-tables.sql", "/seed-data.sql"})
     @Transactional
     public void test_should_fetch_products_greater_than_given_approved_date() {
-        final List<Product> products = productRepository.findByApprovedDateGreaterThanEqual(Date.valueOf
-                (LocalDate.of(2015, 1, 1)));
+        final Date date = Date.valueOf(LocalDate.of(2015, 1, 1));
+        final List<Product> products = productRepository.findByApprovedDateGreaterThanEqual(date);
         assertEquals(2, products.size());
     }
 
@@ -59,6 +59,7 @@ public class FlywaySpringDataJpaApplicationTests {
         final List<PhoneNumber> phoneNumbers = customer.getPhoneNumbers();
         assertEquals(1, phoneNumbers.size());
         assertEquals("12312312", phoneNumbers.get(0).getPhoneNumber());
+        assertEquals(1, phoneNumbers.get(0).getCustomers().size());
     }
 
     @Test

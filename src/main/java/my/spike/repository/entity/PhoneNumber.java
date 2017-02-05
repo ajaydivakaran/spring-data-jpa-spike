@@ -5,9 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "phone_numbers")
-@Data
 public class PhoneNumber {
 
     @Id
