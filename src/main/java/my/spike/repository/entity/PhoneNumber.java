@@ -1,18 +1,13 @@
 package my.spike.repository.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "phone_numbers")
 @Data
-@EqualsAndHashCode
-@AllArgsConstructor
-@NoArgsConstructor
 public class PhoneNumber {
 
     @Id
@@ -22,6 +17,6 @@ public class PhoneNumber {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-//    @ManyToMany(targetEntity = Customer.class)
-//    private Set<Customer> customers;
+    @ManyToMany(mappedBy = "phoneNumbers", fetch = FetchType.LAZY)
+    private List<Customer> customers;
 }

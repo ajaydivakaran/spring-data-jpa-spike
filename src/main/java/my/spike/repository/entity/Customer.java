@@ -3,7 +3,7 @@ package my.spike.repository.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,8 +20,9 @@ public class Customer {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "customer_phone_numbers",
+            joinColumns = {@JoinColumn(name = "customer_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "phone_number_id", referencedColumnName = "id")}
     )
-    private Set<PhoneNumber> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 }
 

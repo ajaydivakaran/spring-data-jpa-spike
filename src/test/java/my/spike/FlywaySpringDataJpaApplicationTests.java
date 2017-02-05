@@ -17,7 +17,6 @@ import javax.transaction.Transactional;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
@@ -57,9 +56,9 @@ public class FlywaySpringDataJpaApplicationTests {
     @Transactional
     public void test_should_return_phone_numbers_for_given_customer() {
         final Customer customer = customerRepository.findOne(1);
-        final Set<PhoneNumber> phoneNumbers = customer.getPhoneNumbers();
+        final List<PhoneNumber> phoneNumbers = customer.getPhoneNumbers();
         assertEquals(1, phoneNumbers.size());
-        assertEquals("12312312", phoneNumbers.stream().toArray(PhoneNumber[]::new)[0].getPhoneNumber());
+        assertEquals("12312312", phoneNumbers.get(0).getPhoneNumber());
     }
 
     @Test
